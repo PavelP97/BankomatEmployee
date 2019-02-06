@@ -1,24 +1,20 @@
 package bankomatemployee;
 
-
 import bank_emp_model.Account;
 import bank_emp_model.Client;
 import bank_emp_model.Employee;
 import bank_emp_model.HandleAccount;
+import bank_emp_model.HandleLoan;
 import bank_emp_model.Loan;
 import java.io.FileInputStream;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 
@@ -226,6 +222,40 @@ public class Repository {
         handleAccount.setHistoryOfAccounts(historyOfAccounts);
         return historyOfAccounts;
     }
+    
+    
+    public List<HandleLoan> getAllHandleLoans(){
+        HandleLoan handleLoan = new HandleLoan();
+        List<HandleLoan> handleLoans = new ArrayList();
+        boolean isGranted;
+        
+        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+            p.getProperty("name"), p.getProperty("password"));
+            Statement stmt = con.createStatement();){
+            
+            ResultSet rs = stmt.executeQuery("select idhanteraLan, lanId, "
+                    + "bevilja, lanrantesats, betalplan, anstalldId, date from hanteraLan");
+            
+            while(rs.next()){
+
+                if (rs.getInt("bevilja") == 1){
+                    isGranted = true;
+                } else
+                    isGranted = false;
+                
+                handleLoan = new HandleLoan(rs.getInt("idhanteraLan"), rs.getInt("lanId"), isGranted, 
+                        rs.getDouble("lanRantesats"), rs.getDate("betalplan"), rs.getInt("anstalldId"), 
+                        rs.getDate("date"));
+                handleLoans.add(handleLoan);
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        handleLoan.setHandleLoans(handleLoans);
+        return handleLoans;
+    }
+    
     
     
     
