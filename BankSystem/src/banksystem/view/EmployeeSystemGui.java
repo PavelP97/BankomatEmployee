@@ -50,10 +50,7 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
     public EmployeeSystemGui(Employee e){
         initComponents();
         this.currentEmployee=e;
-        for(int i=0;i<period.length;i++){
-           jComboBox2.addItem(period[i]);
-        }
-        jComboBox2.setSelectedIndex(-1);
+        
     }
 
     /**
@@ -836,11 +833,11 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jLabel20AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel20AncestorAdded
-        con.showVinstOfLoan(selectedLoan);        // TODO add your handling code here:
+//        con.showVinstOfLoan(selectedLoan);        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel20AncestorAdded
 
     private void jLabel14AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel14AncestorAdded
-        con.showPayOffMonth(selectedLoan);        // TODO add your handling code here:
+//        con.showPayOffMonth(selectedLoan);        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel14AncestorAdded
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed

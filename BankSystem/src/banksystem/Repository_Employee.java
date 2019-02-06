@@ -6,7 +6,7 @@ package banksystem;
 
 
 import banksystem.model.Account;
-import banksystem.model.AccountHistory;
+
 import banksystem.model.Client;
 import banksystem.model.Employee;
 import banksystem.model.HandleAccount;
@@ -14,7 +14,9 @@ import banksystem.model.Loan;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +32,7 @@ public class Repository_Employee {
     
     public Repository_Employee(){
         try {
-            p.load(new FileInputStream("src/bankomat/Settings.properties"));
+            p.load(new FileInputStream("src/banksystem/Settings.properties"));
 //            Class.forName("com.mysql.jdbc.Driver");
         }
         catch (Exception e){
@@ -237,11 +239,46 @@ date datetime NOT NULL,
          
      }
      
-//     public double callPayOffMonth(int loanID){
-//         
-//     }
-//     
-//     public double callVinstOfLoan(int loanID){
-//         
-//     }
+     public double callPayOffMonth(int loanID) throws SQLException{
+       ResultSet rs =null;
+        String query="select PayOffMonth( ? ) as result; ";
+        double result=0;
+                       
+        try (Connection con = DriverManager.getConnection(p.getProperty("connectionString"),
+                             p.getProperty("name"),
+                             p.getProperty("password"));
+            PreparedStatement stmt = con.prepareStatement(query);){
+            stmt.setInt(1, loanID);
+           
+            rs = stmt.executeQuery();
+            while(rs.next()){
+            result=rs.getDouble("result");
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }  
+        return result;
+     }
+     
+     public double callVinstOfLoan(int loanID) throws SQLException{
+        ResultSet rs =null;
+        String query="select VinstofLoan( ? ) as result; ";
+        double result=0;              
+        try (Connection con = DriverManager.getConnection(p.getProperty("connectionString"),
+                             p.getProperty("name"),
+                             p.getProperty("password"));
+            PreparedStatement stmt = con.prepareStatement(query);){
+            stmt.setInt(1, loanID);
+           
+            rs = stmt.executeQuery();
+            while(rs.next()){
+            result=rs.getDouble("result");
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }  
+        return result;
+     }
 }

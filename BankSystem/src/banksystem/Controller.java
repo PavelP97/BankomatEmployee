@@ -10,6 +10,8 @@ import banksystem.model.Client;
 import banksystem.model.Employee;
 import banksystem.model.HandleAccount;
 import banksystem.model.Loan;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -63,10 +65,10 @@ public class Controller {
        return historysofAccount;
    }
    
-   public Employee EmployeeLogin (String number){
+   public Employee EmployeeLogin (int number){
       List<Employee> employees=repo.getAllEmployees();
        for(Employee e:employees){
-           if(number.equals(e.getNumber())){
+           if(number==e.getNumber()){
               return e;  
            }
            else
@@ -129,13 +131,19 @@ public class Controller {
        repo.callSetLoanRate(e.getId(), c.getId(), l.getId(), rate);
    }
    
-//   public double showVinstOfLoan(Loan l){
-//       return repo.callVinstOfLoan(l.getId());
-//   }
-//   
-//   public double showPayOffMonth(Loan l){
-//       return repo.callPayOffMonth(l.getId());
-//   }
+   public double showVinstOfLoan(Loan l) throws SQLException{
+       return repo.callVinstOfLoan(l.getId());
+   }
    
-   public 
+   public double showPayOffMonth(Loan l) throws SQLException{
+       return repo.callPayOffMonth(l.getId());
+   }
+   
+   public List<HandleAccount> periodAccountHistory(Date fram,Date to){ 
+       SimpleDateFormat sdf=new SimpleDateFormat("yyyy-mm-dd");
+       List<HandleAccount> periodHistoryofAccounts=repo.getAllHandleAccounts().stream().
+               filter(s->s.getCreationDate().after(fram)&&s.getCreationDate().before(to)).
+               collect(Collectors.toList());
+       return periodHistoryofAccounts;
+   }
 }
