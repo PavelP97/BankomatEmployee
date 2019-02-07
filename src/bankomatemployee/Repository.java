@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -206,13 +207,15 @@ public class Repository {
                 } else
                     skapa = false;
                 
+                LocalDateTime localDateTime = fromStringToLocalDateTime(rs.getString("date"));
+                
                 handleAccount = new HandleAccount(rs.getInt("idhantering"), 
                         rs.getInt("kontoId"), 
                         rs.getInt("sattainsaldo"),
                         rs.getInt("tautsaldo"),
                         rs.getDouble("rantesats"),
                         skapa,
-                        rs.getDate("date"),
+                        localDateTime,
                         avsluta,
                         rs.getInt("anstalldId"),
                         rs.getInt("kundId"));
@@ -225,6 +228,12 @@ public class Repository {
         }
         handleAccount.setHistoryOfAccounts(historyOfAccounts);
         return historyOfAccounts;
+    }
+    
+    
+    public LocalDateTime fromStringToLocalDateTime(String date){
+        String sdt = date.replace(" ", "T");
+        return LocalDateTime.parse(sdt);
     }
     
     
@@ -515,6 +524,8 @@ public class Repository {
            e.printStackTrace();
        } 
     }
+    
+    
     
     
 

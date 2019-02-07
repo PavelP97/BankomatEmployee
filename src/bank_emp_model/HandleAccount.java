@@ -5,12 +5,12 @@
 package bank_emp_model;
 
 import java.sql.Date;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
 public class HandleAccount {
-    
+
     // ! skapa metoder för att ta ut rätt account, anställd, kund från id:na
     
     private int id;
@@ -19,7 +19,7 @@ public class HandleAccount {
     private int withdrawalAmount;
     private double rate;
     private boolean created;
-    private Date dateForChange;
+    private LocalDateTime dateForChange;
     private boolean closedAccount;  // true = kontot avslutat
     private int employeeId;
     private int clientId;
@@ -27,7 +27,7 @@ public class HandleAccount {
     
     
     public HandleAccount(int id, int accountId, int depositAmount, int withdrawalAmount, 
-            double rate, boolean created, Date dateForChange, boolean closedAccount,
+            double rate, boolean created, LocalDateTime dateForChange, boolean closedAccount,
             int employeeId, int clientId){
         this.id = id;
         this.accountId = accountId;
@@ -43,6 +43,20 @@ public class HandleAccount {
     public HandleAccount(){}
 
     
+    
+        /**
+     * @return the dateForChange
+     */
+    public LocalDateTime getDateForChange() {
+        return dateForChange;
+    }
+
+    /**
+     * @param dateForChange the dateForChange to set
+     */
+    public void setDateForChange(LocalDateTime dateForChange) {
+        this.dateForChange = dateForChange;
+    }
     
     public int getAccountId() {
         return accountId;
@@ -76,12 +90,12 @@ public class HandleAccount {
         this.rate = rate;
     }
 
-    public Date getCreationDate() {
-        return dateForChange;
+    public LocalDateTime getCreationDate() {
+        return getDateForChange();
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.dateForChange = creationDate;
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.setDateForChange(creationDate);
     }
 
     public boolean isClosedAccount() {
@@ -147,5 +161,19 @@ public class HandleAccount {
        Client client = new Client();
        return client.getClients().get(clientId);
    }
+
+    /**
+     * @return the created
+     */
+    public boolean isCreated() {
+        return created;
+    }
+
+    /**
+     * @param created the created to set
+     */
+    public void setCreated(boolean created) {
+        this.created = created;
+    }
     
 }
