@@ -31,7 +31,7 @@ public class Repository {
     
     public Repository(){
         try {
-            p.load(new FileInputStream("src/bankomatemployee/Settings.properties"));
+            p.load(new FileInputStream("src/banksystem/Settings.properties"));
 //            Class.forName("com.mysql.jdbc.Driver");
         }
         catch (Exception e){
@@ -109,6 +109,7 @@ public class Repository {
                 employee = new Employee(rs.getInt("idAnstalld"), rs.getInt("number"), rs.getString("name"));
                 employees.add(employee);
             }
+
         }
         catch(Exception e){
             e.printStackTrace();

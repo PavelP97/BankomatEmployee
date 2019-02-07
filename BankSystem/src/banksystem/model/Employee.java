@@ -17,14 +17,28 @@ public class Employee {
     private int number;
     
     private String name;
+    
+    private List<Employee> employees;
 
-    public Employee(int aInt, int aInt0, String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Employee(int id, int number, String name) {
+        this.id = id;
+        this.number = number;
+        this.name = name;
+        
     }
 
     public Employee() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
+
+    
+
+    public Employee(int number) {
+        this.number = number;
+    }
+    
+    
 
     public String getName() {
         return name;
@@ -53,9 +67,10 @@ public class Employee {
     }
 
     public void setEmployees(List<Employee> employees) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.employees=employees;
     }
-    
+
+   
     
 
 }
