@@ -140,7 +140,7 @@ public class Controller {
    }
    
    public List<HandleAccount> periodAccountHistory(Date fram,Date to){ 
-       SimpleDateFormat sdf=new SimpleDateFormat("yyyy-mm-dd");
+       SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
        List<HandleAccount> periodHistoryofAccounts=repo.getAllHandleAccounts().stream().
                filter(s->s.getCreationDate().after(fram)&&s.getCreationDate().before(to)).
                collect(Collectors.toList());

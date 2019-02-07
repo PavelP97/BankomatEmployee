@@ -670,18 +670,26 @@
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="373" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel12" min="-2" pref="104" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="373" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel12" min="-2" pref="104" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel15" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                              <Component id="jLabel20" min="-2" pref="129" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel15" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                      <Component id="jLabel20" min="-2" pref="129" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jButton20" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -775,7 +783,9 @@
                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel12" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="488" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="jButton20" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="426" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -820,9 +830,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel14">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jLabel14"/>
-              </Properties>
               <Events>
                 <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jLabel14AncestorAdded"/>
               </Events>
@@ -864,11 +871,16 @@
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel20">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jLabel20"/>
-              </Properties>
               <Events>
                 <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jLabel20AncestorAdded"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton20">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Show Result"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton20ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

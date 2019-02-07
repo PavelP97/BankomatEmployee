@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Level;
@@ -127,6 +128,7 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
+        jButton20 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -158,12 +160,12 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
 
         jLabel10.setText("Information ");
         jLabel10.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jLabel10AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -356,12 +358,12 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
 
         jLabel6.setText("Account Information");
         jLabel6.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jLabel6AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -572,14 +574,13 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
 
         jLabel13.setText("/month");
 
-        jLabel14.setText("jLabel14");
         jLabel14.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jLabel14AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -608,14 +609,20 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
             }
         });
 
-        jLabel20.setText("jLabel20");
         jLabel20.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jLabel20AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+        });
+
+        jButton20.setText("Show Result");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
             }
         });
 
@@ -627,17 +634,22 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(373, 373, 373)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel14)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(373, 373, 373)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(jLabel14)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jButton20)
+                                .addGap(125, 125, 125)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -704,7 +716,9 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
                     .addComponent(jLabel14)
                     .addComponent(jLabel13)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(488, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(jButton20)
+                .addContainerGap(426, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Grant Loans", jPanel2);
@@ -849,6 +863,19 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        try { 
+            jLabel20.setText(String.valueOf(con.showVinstOfLoan(selectedLoan)));
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeSystemGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            jLabel14.setText(String.valueOf(con.showPayOffMonth(selectedLoan)));// TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeSystemGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton20ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -897,6 +924,7 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
