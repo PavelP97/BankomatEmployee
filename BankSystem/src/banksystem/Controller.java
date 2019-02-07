@@ -141,7 +141,7 @@ public class Controller {
        return repo.callVinstOfLoan(l.getId());
    }
    
-   public double showPayOffMonth(Loan l) throws SQLException{
+   public double showPayOffMonth(Loan l) throws SQLException {
        return repo.callPayOffMonth(l.getId());
    }
    

@@ -521,9 +521,9 @@ public class Repository {
     
     
 
- public double callPayOffMonth(int loanID) throws SQLException{
+    public double callPayOffMonth(int loanID) {
        ResultSet rs =null;
-        String query="select PayOffMonth( ? ) as payoff; ";
+        String query="select PayOffMonth(?) as payoff; ";
         double result=0;
                        
         try (Connection con = DriverManager.getConnection(p.getProperty("connectionString"),
@@ -543,10 +543,11 @@ public class Repository {
         return result;
      }
      
-     public double callVinstOfLoan(int loanID) throws SQLException{
+     public double callVinstOfLoan(int loanID) {
         ResultSet rs =null;
-        String query="select VinstofLoan( ? ) as vinst; ";
-        double result=0;              
+        String query="select VinstofLoan(?) as vinst; ";
+        double result=0; 
+        
         try (Connection con = DriverManager.getConnection(p.getProperty("connectionString"),
                              p.getProperty("name"),
                              p.getProperty("password"));
@@ -557,6 +558,7 @@ public class Repository {
             while(rs.next()){
             result=rs.getDouble("vinst");
             }
+            
         }
         catch (Exception e){
             e.printStackTrace();

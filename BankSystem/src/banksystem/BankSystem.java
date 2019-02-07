@@ -48,8 +48,8 @@ public class BankSystem {
 //            System.out.println(new Client(1).getPersonnumber());
 
 //            System.out.println(con.showVinstOfLoan(1));
-            System.out.println(rep.callVinstOfLoan(6));
-//            System.out.println(rep.callPayOffMonth(6));
+            System.out.println(rep.callVinstOfLoan(2));
+            System.out.println(rep.callPayOffMonth(1));
                     
 //        
     }
