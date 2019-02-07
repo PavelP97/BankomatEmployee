@@ -1,11 +1,14 @@
+package banksystem;
 
 
-import bank_emp_model.Account;
+
+import banksystem.model.Account;
 import banksystem.model.Client;
-import bank_emp_model.Employee;
-import bank_emp_model.HandleAccount;
-import bank_emp_model.HandleLoan;
-import bank_emp_model.Loan;
+import banksystem.model.Employee;
+import banksystem.model.HandleAccount;
+//import bank_emp_model.HandleAccount;
+import banksystem.model.HandleLoan;
+import banksystem.model.Loan;
 import java.io.FileInputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -265,16 +268,16 @@ public class Repository {
     
     
     // Lägga in nya kunder
-    public void callCreateNewClient(int employeeID, int clientNumber, int clientPIN){
+    public void callCreateNewClient(int employeeID, int clientNumber){
                        
         try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
             p.getProperty("name"), p.getProperty("password"));
-            CallableStatement cstmt = con.prepareCall("CALL CreateNewClient(?,?,?)");
+            CallableStatement cstmt = con.prepareCall("CALL CreateNewClient(?,?)");
                 ){
 
             cstmt.setInt(1, employeeID);
             cstmt.setInt(2, clientNumber);
-            cstmt.setInt(3, clientPIN);
+            
             ResultSet rs = cstmt.executeQuery();
             }
             

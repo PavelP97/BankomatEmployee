@@ -4,6 +4,8 @@ Java18-OOJ
  */
 package banksystem.model;
 
+import java.util.List;
+
 /**
  *
  * @author xingao
@@ -15,6 +17,14 @@ public class Employee {
     private int number;
     
     private String name;
+
+    public Employee(int aInt, int aInt0, String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Employee() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public String getName() {
         return name;
@@ -40,6 +50,10 @@ public class Employee {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

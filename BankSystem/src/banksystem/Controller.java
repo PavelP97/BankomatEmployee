@@ -91,7 +91,7 @@ public class Controller {
    }
    
    public void createClient(Employee e,Client c){
-       repo.callCreateClient(e.getId(), c.getPersonnumber());
+       repo.callCreateNewClient(e.getId(), c.getPersonnumber());
    }
    
    public void deleteClient(Employee e,Client c){
