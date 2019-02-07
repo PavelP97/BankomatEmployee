@@ -7,7 +7,9 @@ import bank_emp_model.HandleAccount;
 import bank_emp_model.HandleLoan;
 import bank_emp_model.Loan;
 import java.io.FileInputStream;
+import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +18,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Repository {
@@ -24,7 +28,7 @@ public class Repository {
     
     public Repository(){
         try {
-            p.load(new FileInputStream("src/bankomat/Settings.properties"));
+            p.load(new FileInputStream("src/bankomatemployee/Settings.properties"));
 //            Class.forName("com.mysql.jdbc.Driver");
         }
         catch (Exception e){
@@ -255,6 +259,273 @@ public class Repository {
         handleLoan.setHandleLoans(handleLoans);
         return handleLoans;
     }
+    
+    
+    // Call Stored Procedures
+    
+    
+    // Lägga in nya kunder
+    public void callCreateNewClient(int employeeID, int clientNumber, int clientPIN){
+                       
+        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+            p.getProperty("name"), p.getProperty("password"));
+            CallableStatement cstmt = con.prepareCall("CALL CreateNewClient(?,?,?)");
+                ){
+
+            cstmt.setInt(1, employeeID);
+            cstmt.setInt(2, clientNumber);
+            cstmt.setInt(3, clientPIN);
+            ResultSet rs = cstmt.executeQuery();
+            }
+            
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        } 
+     }  
+     
+    // Uppdatera kunduppgifter
+     public void callUpdateInfo(int clientID, int PIN, String name, String address, String telephone){
+         
+        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+            p.getProperty("name"), p.getProperty("password"));
+            CallableStatement cstmt = con.prepareCall("CALL UpdateInfo(?,?,?,?,?)");
+                ){
+
+            cstmt.setInt(1, clientID);
+            cstmt.setInt(2, PIN);
+            cstmt.setString(3, name);
+            cstmt.setString(4, address);
+            cstmt.setString(5, telephone);
+            ResultSet rs = cstmt.executeQuery();
+            }
+            
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        } 
+     }
+     
+    // Radera kunder
+    public void callDeleteClient(int employeeID, int clientID){
+
+       try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+           p.getProperty("name"), p.getProperty("password"));
+           CallableStatement cstmt = con.prepareCall("CALL DeleteClient(?,?)");
+               ){
+
+           cstmt.setInt(1, employeeID);
+           cstmt.setInt(2, clientID);
+           ResultSet rs = cstmt.executeQuery();
+           }
+
+       catch (SQLException ex) {
+           ex.printStackTrace();
+       }
+       catch (Exception e){
+           e.printStackTrace();
+       } 
+
+    }
+     
+    // Skapa konton åt en kund
+    public void callAssignAccount(int employeeID, int clientID, int AccountNumber){
+       
+        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+           p.getProperty("name"), p.getProperty("password"));
+           CallableStatement cstmt = con.prepareCall("CALL AssignAccount(?,?,?)");
+               ){
+
+           cstmt.setInt(1, employeeID);
+           cstmt.setInt(2, clientID);
+           cstmt.setInt(3, AccountNumber);
+           ResultSet rs = cstmt.executeQuery();
+           }
+
+       catch (SQLException ex) {
+           ex.printStackTrace();
+       }
+       catch (Exception e){
+           e.printStackTrace();
+       } 
+    }
+     
+    // Avsluta konto åt en kund
+    public void callEndAccount(int employeeID, int clientID, int accountID){
+        
+        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+           p.getProperty("name"), p.getProperty("password"));
+           CallableStatement cstmt = con.prepareCall("CALL EndAccount(?,?,?)");
+               ){
+
+           cstmt.setInt(1, employeeID);
+           cstmt.setInt(2, clientID);
+           cstmt.setInt(3, accountID);
+           ResultSet rs = cstmt.executeQuery();
+           }
+
+       catch (SQLException ex) {
+           ex.printStackTrace();
+       }
+       catch (Exception e){
+           e.printStackTrace();
+       } 
+    }
+     
+    // Sätta in pengar på ett kundkonto
+    public void callDeposit(int employeeID, int clientID,int accountID, int amount){
+
+        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+           p.getProperty("name"), p.getProperty("password"));
+           CallableStatement cstmt = con.prepareCall("CALL Deposit(?,?,?,?)");
+               ){
+
+           cstmt.setInt(1, employeeID);
+           cstmt.setInt(2, clientID);
+           cstmt.setInt(3, accountID);
+           cstmt.setInt(4, amount);
+           ResultSet rs = cstmt.executeQuery();
+           }
+
+       catch (SQLException ex) {
+           ex.printStackTrace();
+       }
+       catch (Exception e){
+           e.printStackTrace();
+       } 
+    }
+
+    // Ta ut pengar från ett kundkonto
+    public void callWithdraw(int employeeID, int clientID,int accountID, int amount){
+
+        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+           p.getProperty("name"), p.getProperty("password"));
+           CallableStatement cstmt = con.prepareCall("CALL Withdraw(?,?,?,?)");
+               ){
+
+           cstmt.setInt(1, employeeID);
+           cstmt.setInt(2, clientID);
+           cstmt.setInt(3, accountID);
+           cstmt.setInt(4, amount);
+           ResultSet rs = cstmt.executeQuery();
+           }
+
+       catch (SQLException ex) {
+           ex.printStackTrace();
+       }
+       catch (Exception e){
+           e.printStackTrace();
+       } 
+    }
+        
+       
+    // Ändra räntesats på en kunds konto
+    public void callSetAccountRate(int employeeID, int clientID, int accountID, double rate){
+        
+        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+           p.getProperty("name"), p.getProperty("password"));
+           CallableStatement cstmt = con.prepareCall("CALL SetAccountRate(?,?,?,?)");
+               ){
+
+           cstmt.setInt(1, employeeID);
+           cstmt.setInt(2, clientID);
+           cstmt.setInt(3, accountID);
+           cstmt.setDouble(4, rate);
+           ResultSet rs = cstmt.executeQuery();
+           }
+
+       catch (SQLException ex) {
+           ex.printStackTrace();
+       }
+       catch (Exception e){
+           e.printStackTrace();
+       } 
+    }
+        
+    // Bevilja lån till en kund
+    public void callGrantLoan(int employeeID, int clientID, int loanID){
+        
+        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+           p.getProperty("name"), p.getProperty("password"));
+           CallableStatement cstmt = con.prepareCall("CALL GrantLoan(?,?,?)");
+               ){
+
+           cstmt.setInt(1, employeeID);
+           cstmt.setInt(2, clientID);
+           cstmt.setInt(3, loanID);
+           ResultSet rs = cstmt.executeQuery();
+           }
+
+       catch (SQLException ex) {
+           ex.printStackTrace();
+       }
+       catch (Exception e){
+           e.printStackTrace();
+       } 
+    }
+
+    // Ändra räntesats på en kunds lån
+    // `SetLoanRate`(in employeeID int, in clientID int, in loanID int, in rate decimal(3,1))
+    public void callSetLoanRate(int employeeID, int clientID,int loanID, double rate){
+        
+        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+           p.getProperty("name"), p.getProperty("password"));
+           CallableStatement cstmt = con.prepareCall("CALL SetLoanRate(?,?,?,?)");
+               ){
+
+           cstmt.setInt(1, employeeID);
+           cstmt.setInt(2, clientID);
+           cstmt.setInt(3, loanID);
+           cstmt.setDouble(4, rate);
+           ResultSet rs = cstmt.executeQuery();
+           }
+
+       catch (SQLException ex) {
+           ex.printStackTrace();
+       }
+       catch (Exception e){
+           e.printStackTrace();
+       } 
+    }
+    
+    // Ändra betalplan på en kunds lån (den tid som det kommer att ta för kunden att betala lånet)
+    // `ChangeLanPlan`(in employeeID int, in clientID int, in loanID int, in newPlan date)
+    public void callChangeLanPlan(int employeeID, int clientID,int loanID, Date newPlan){
+        
+        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+           p.getProperty("name"), p.getProperty("password"));
+           CallableStatement cstmt = con.prepareCall("CALL ChangeLanPlan(?,?,?,?)");
+               ){
+
+           cstmt.setInt(1, employeeID);
+           cstmt.setInt(2, clientID);
+           cstmt.setInt(3, loanID);
+           cstmt.setDate(4, newPlan);
+           ResultSet rs = cstmt.executeQuery();
+           }
+
+       catch (SQLException ex) {
+           ex.printStackTrace();
+       }
+       catch (Exception e){
+           e.printStackTrace();
+       } 
+    }
+    
+    
+
+//     
+//     public double callPayOffMonth(int loanID){
+//         
+//     }
+//     
+//     public double callVinstOfLoan(int loanID){
+//         
+//     }
     
     
     

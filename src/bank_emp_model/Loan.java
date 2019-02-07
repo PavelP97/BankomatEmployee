@@ -3,10 +3,7 @@
 package bank_emp_model;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Loan {
    
