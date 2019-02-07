@@ -34,6 +34,10 @@ public class Account {
     
     public Account (){}
     
+    public Account(int id){
+        this.id=id;
+    }
+    
     public double getRate() {
         return rate;
     }
@@ -67,7 +71,8 @@ public class Account {
     }
 
     public String AccountInfo() {
-        return  "number=" + number + ", balance=" + balance + ", rate=" + rate ;
+        return  "number=" + number + "\n"+ "balance=" + balance + "\n"+ "rate=" + rate+
+                "\n"+ "avsluta="+avsluta ;
     }
 
     

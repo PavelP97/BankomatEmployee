@@ -44,7 +44,7 @@ public class Controller {
    } 
      
    
-   public List<Account> loadAccountsforClient(Client c){
+    public List<Account> loadAccountsforClient(Client c){
        List<Account> accountsofClient=repo.getAllAccounts().stream().
                filter(a->a.getClientID()==c.getId()&&a.getAvsluta()==false).
                collect(Collectors.toList());
@@ -71,9 +71,9 @@ public class Controller {
            if(number==e.getNumber()){
               return e;  
            }
-           else
-               JOptionPane.showMessageDialog(null,"Invalid Number.");
-           }          
+           
+           } 
+       
        return null;
    } 
    
@@ -81,7 +81,7 @@ public class Controller {
    public Client checkClientNumber(String personnumber){
        List<Client> clients=repo.getAllClients();
        for(Client c:clients){
-           if(personnumber.equals(c.getPersonnumber())){
+           if(personnumber.equals(String.valueOf(c.getPersonnumber()))){
                return c;
            }
            
@@ -90,8 +90,8 @@ public class Controller {
    
    }
    
-   public void createClient(Employee e,Client c){
-       repo.callCreateNewClient(e.getId(), c.getPersonnumber());
+   public void createClient(Employee e,String personnumber){
+       repo.callCreateNewClient(e.getId(), Integer.valueOf(personnumber));
    }
    
    public void deleteClient(Employee e,Client c){
@@ -107,8 +107,10 @@ public class Controller {
    }
    
    public void endAccount(Employee e,Client c,Account a){
-       
+       repo.callEndAccount(e.getId(), c.getId(), a.getId());
    }
+   
+
    
    public void depositAmount(Employee e,Client c,Account a,int amount){
        repo.callDeposit(e.getId(), c.getId(), a.getId(), amount);
@@ -129,6 +131,10 @@ public class Controller {
    
    public void setLoanRate(Employee e,Client c,Loan l,double rate){
        repo.callSetLoanRate(e.getId(), c.getId(), l.getId(), rate);
+   }
+   
+   public void changeLanPlan(Employee e,Client c,Loan l,String newplan){
+       repo.callChangeLanPlan(e.getId(), c.getId(), l.getId(), newplan);
    }
    
    public double showVinstOfLoan(Loan l) throws SQLException{

@@ -80,7 +80,7 @@ public class Client {
     }
    
     public String ClientInfo() {
-        return  "personnumber=" + personnumber + ", name=" + name + ", address=" + address + ", telephone=" + telephone ;
+        return  "personnumber=" + personnumber + "\n"+"PIN="+PIN+"\n"+ "name=" + name + "\n"+ "address=" + address + "\n" +"telephone=" + telephone ;
     }
 
     public List<Client> getClients() {

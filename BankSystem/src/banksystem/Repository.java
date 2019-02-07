@@ -137,8 +137,7 @@ public class Repository {
                 } else
                     avsluta = false;
                 
-                account = new Account(rs.getInt("idKonto"), rs.getInt("number"),
-                        rs.getInt("kundId"), rs.getInt("saldo"), 
+                account = new Account(rs.getInt("idKonto"), rs.getInt("kundId"), rs.getInt("number"),rs.getInt("saldo"), 
                         rs.getDouble("sparaRantesats"), avsluta);
                 accounts.add(account);
             }
@@ -498,7 +497,7 @@ public class Repository {
     
     // Ändra betalplan på en kunds lån (den tid som det kommer att ta för kunden att betala lånet)
     // `ChangeLanPlan`(in employeeID int, in clientID int, in loanID int, in newPlan date)
-    public void callChangeLanPlan(int employeeID, int clientID,int loanID, Date newPlan){
+    public void callChangeLanPlan(int employeeID, int clientID,int loanID, String newPlan){
         
         try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
            p.getProperty("name"), p.getProperty("password"));
@@ -508,7 +507,7 @@ public class Repository {
            cstmt.setInt(1, employeeID);
            cstmt.setInt(2, clientID);
            cstmt.setInt(3, loanID);
-           cstmt.setDate(4, newPlan);
+           cstmt.setString(4, newPlan);
            ResultSet rs = cstmt.executeQuery();
            }
 
@@ -524,7 +523,7 @@ public class Repository {
 
  public double callPayOffMonth(int loanID) throws SQLException{
        ResultSet rs =null;
-        String query="select PayOffMonth( ? ) as result; ";
+        String query="select PayOffMonth( ? ) as payoff; ";
         double result=0;
                        
         try (Connection con = DriverManager.getConnection(p.getProperty("connectionString"),
@@ -535,7 +534,7 @@ public class Repository {
            
             rs = stmt.executeQuery();
             while(rs.next()){
-            result=rs.getDouble("result");
+            result=rs.getDouble("payoff");
             }
         }
         catch (Exception e){
@@ -546,7 +545,7 @@ public class Repository {
      
      public double callVinstOfLoan(int loanID) throws SQLException{
         ResultSet rs =null;
-        String query="select VinstofLoan( ? ) as result; ";
+        String query="select VinstofLoan( ? ) as vinst; ";
         double result=0;              
         try (Connection con = DriverManager.getConnection(p.getProperty("connectionString"),
                              p.getProperty("name"),
@@ -556,7 +555,7 @@ public class Repository {
            
             rs = stmt.executeQuery();
             while(rs.next()){
-            result=rs.getDouble("result");
+            result=rs.getDouble("vinst");
             }
         }
         catch (Exception e){

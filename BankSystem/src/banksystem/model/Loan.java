@@ -75,7 +75,8 @@ public class Loan {
     }
 
     public String loanInfo() {
-        return "number=" + number + ", amount=" + amount + ", rate=" + rate + ", paymentPlan=" + paymentPlan;
+        return "number=" + number + "\n"+"amount=" + amount +"\n"+ "rate=" + rate + 
+                "\n"+"paymentPlan=" + paymentPlan+"\n"+"granted="+granted;
     }
 
     /**
