@@ -161,5 +161,19 @@ public class HandleAccount {
        Client client = new Client();
        return client.getClients().get(clientId);
    }
+
+    /**
+     * @return the created
+     */
+    public boolean isCreated() {
+        return created;
+    }
+
+    /**
+     * @param created the created to set
+     */
+    public void setCreated(boolean created) {
+        this.created = created;
+    }
     
 }
