@@ -1,7 +1,7 @@
 
 
 import bank_emp_model.Account;
-import bank_emp_model.Client;
+import banksystem.model.Client;
 import bank_emp_model.Employee;
 import bank_emp_model.HandleAccount;
 import bank_emp_model.HandleLoan;
@@ -518,14 +518,48 @@ public class Repository {
     
     
 
-//     
-//     public double callPayOffMonth(int loanID){
-//         
-//     }
-//     
-//     public double callVinstOfLoan(int loanID){
-//         
-//     }
+ public double callPayOffMonth(int loanID) throws SQLException{
+       ResultSet rs =null;
+        String query="select PayOffMonth( ? ) as result; ";
+        double result=0;
+                       
+        try (Connection con = DriverManager.getConnection(p.getProperty("connectionString"),
+                             p.getProperty("name"),
+                             p.getProperty("password"));
+            PreparedStatement stmt = con.prepareStatement(query);){
+            stmt.setInt(1, loanID);
+           
+            rs = stmt.executeQuery();
+            while(rs.next()){
+            result=rs.getDouble("result");
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }  
+        return result;
+     }
+     
+     public double callVinstOfLoan(int loanID) throws SQLException{
+        ResultSet rs =null;
+        String query="select VinstofLoan( ? ) as result; ";
+        double result=0;              
+        try (Connection con = DriverManager.getConnection(p.getProperty("connectionString"),
+                             p.getProperty("name"),
+                             p.getProperty("password"));
+            PreparedStatement stmt = con.prepareStatement(query);){
+            stmt.setInt(1, loanID);
+           
+            rs = stmt.executeQuery();
+            while(rs.next()){
+            result=rs.getDouble("result");
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }  
+        return result;
+     }
     
     
     

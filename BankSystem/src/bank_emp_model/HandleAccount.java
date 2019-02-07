@@ -4,6 +4,7 @@
 
 package bank_emp_model;
 
+import banksystem.model.Client;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;

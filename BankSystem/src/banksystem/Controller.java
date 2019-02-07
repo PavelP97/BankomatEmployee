@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
  * @author xingao
  */
 public class Controller {
-   Repository_Employee repo= new Repository_Employee(); 
+   Repository repo= new Repository(); 
    
    
    public Client checkLogin (int usernumber, int pin){
