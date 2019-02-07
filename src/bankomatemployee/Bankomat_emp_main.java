@@ -9,6 +9,9 @@ public class Bankomat_emp_main {
         
         Repository r = new Repository();
         
+        System.out.println(r.getAllEmployees().size());
+        
+        
         // Lägga in nya kunder
         // (int employeeID, int clientNumber, int clientPIN))
         // r.callCreateNewClient(1, 1006305050, 1234);
