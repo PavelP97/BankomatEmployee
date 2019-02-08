@@ -8,10 +8,7 @@ package banksystem.view;
 import banksystem.Controller;
 import banksystem.model.Employee;
 
-/**
- *
- * @author xingao
- */
+
 public class EmployeeLogin_new extends javax.swing.JFrame {
     Controller con=new Controller();
     /**

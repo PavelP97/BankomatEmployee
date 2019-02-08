@@ -6,10 +6,7 @@ package banksystem.model;
 
 import java.util.List;
 
-/**
- *
- * @author xingao
- */
+
 public class Employee {
     
     private int id;

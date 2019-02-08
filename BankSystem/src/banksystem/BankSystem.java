@@ -7,14 +7,9 @@ package banksystem;
 
 import banksystem.model.Account;
 import banksystem.model.Client;
-import banksystem.model.Employee;
-import banksystem.model.HandleAccount;
 import banksystem.model.Loan;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class BankSystem {

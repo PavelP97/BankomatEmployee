@@ -14,15 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
-/*
- *  
-Java18-OOJ
- */
 
-/**
- *
- * @author xingao
- */
 public class EmployeeSystemGui extends javax.swing.JFrame {
 
     /**
