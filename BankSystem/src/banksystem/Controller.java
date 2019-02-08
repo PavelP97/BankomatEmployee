@@ -12,6 +12,8 @@ import banksystem.model.HandleAccount;
 import banksystem.model.Loan;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -145,11 +147,36 @@ public class Controller {
        return repo.callPayOffMonth(l.getId());
    }
    
-   public List<HandleAccount> periodAccountHistory(Date fram,Date to){ 
-       SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-       List<HandleAccount> periodHistoryofAccounts=repo.getAllHandleAccounts().stream().
-               filter(s->s.getCreationDate().after(fram)&&s.getCreationDate().before(to)).
-               collect(Collectors.toList());
-       return periodHistoryofAccounts;
+//   public List<HandleAccount> periodAccountHistory(Date fram,Date to){ 
+//       SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//       List<HandleAccount> periodHistoryofAccounts=repo.getAllHandleAccounts().stream().
+//               filter(s->s.getCreationDate().after(fram)&&s.getCreationDate().before(to)).
+//               collect(Collectors.toList());
+//       return periodHistoryofAccounts;
+//   }
+//   
+    public List<HandleAccount> loadHistorysforAccount(int aid, String stringStartDate, String stringEndDate){
+       
+       LocalDate startDate = LocalDate.parse(stringStartDate);
+       LocalDate endDate = LocalDate.parse(stringEndDate);
+       
+//       int accountId = a.getId();
+       HandleAccount ha = new HandleAccount();
+       List<HandleAccount> selectedDatesOfHandleAccount = new ArrayList<>();
+       
+       for (int i = 0; i < ha.getHistoryOfAccounts().size(); i++) {
+           // om kontoID stämmer
+           if (ha.getHistoryOfAccounts().get(i).getAccountId() == aid){
+                // Om datumet är mellan startDate och endDate, eller är lika med startDate eller endDate.
+                if(((ha.getHistoryOfAccounts().get(i).getCreationDate()).toLocalDate().isAfter(startDate)) && 
+                        ((ha.getHistoryOfAccounts().get(i).getCreationDate()).toLocalDate().isBefore(endDate)) ||
+                        ((ha.getHistoryOfAccounts().get(i).getCreationDate()).toLocalDate().equals(startDate)) ||
+                        ((ha.getHistoryOfAccounts().get(i).getCreationDate()).toLocalDate().equals(endDate))
+                        ){
+                    selectedDatesOfHandleAccount.add(ha.getHistoryOfAccounts().get(i));
+                }
+           }
+       }
+       return selectedDatesOfHandleAccount;
    }
 }

@@ -18,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -184,51 +185,51 @@ public class Repository {
     }
     
     
-    public List<HandleAccount> getAllHandleAccounts(){
-        HandleAccount handleAccount = new HandleAccount();
-        List<HandleAccount> historyOfAccounts = new ArrayList();
-        boolean avsluta;
-        boolean skapa;
-        
-        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
-            p.getProperty("name"), p.getProperty("password"));
-            Statement stmt = con.createStatement();){
-            
-            ResultSet rs = stmt.executeQuery("select idhantering, kontoId, "
-                    + "sattainsaldo, tautsaldo, rantesats, skapa, avsluta, "
-                    + "anstalldId, kundId, date from hanteraKonto");
-            
-            while(rs.next()){
-                if (rs.getInt("avsluta") == 1){
-                    avsluta = true;
-                } else
-                    avsluta = false;
-
-                if (rs.getInt("skapa") == 1){
-                    skapa = true;
-                } else
-                    skapa = false;
-                
-                handleAccount = new HandleAccount(rs.getInt("idhantering"), 
-                        rs.getInt("kontoId"), 
-                        rs.getInt("sattainsaldo"),
-                        rs.getInt("tautsaldo"),
-                        rs.getDouble("rantesats"),
-                        skapa,
-                        rs.getDate("date"),
-                        avsluta,
-                        rs.getInt("anstalldId"),
-                        rs.getInt("kundId"));
-                
-                historyOfAccounts.add(handleAccount);
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        handleAccount.setHistoryOfAccounts(historyOfAccounts);
-        return historyOfAccounts;
-    }
+//    public List<HandleAccount> getAllHandleAccounts(){
+//        HandleAccount handleAccount = new HandleAccount();
+//        List<HandleAccount> historyOfAccounts = new ArrayList();
+//        boolean avsluta;
+//        boolean skapa;
+//        
+//        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+//            p.getProperty("name"), p.getProperty("password"));
+//            Statement stmt = con.createStatement();){
+//            
+//            ResultSet rs = stmt.executeQuery("select idhantering, kontoId, "
+//                    + "sattainsaldo, tautsaldo, rantesats, skapa, avsluta, "
+//                    + "anstalldId, kundId, date from hanteraKonto");
+//            
+//            while(rs.next()){
+//                if (rs.getInt("avsluta") == 1){
+//                    avsluta = true;
+//                } else
+//                    avsluta = false;
+//
+//                if (rs.getInt("skapa") == 1){
+//                    skapa = true;
+//                } else
+//                    skapa = false;
+//                
+//                handleAccount = new HandleAccount(rs.getInt("idhantering"), 
+//                        rs.getInt("kontoId"), 
+//                        rs.getInt("sattainsaldo"),
+//                        rs.getInt("tautsaldo"),
+//                        rs.getDouble("rantesats"),
+//                        skapa,
+//                        rs.getDate("date"),
+//                        avsluta,
+//                        rs.getInt("anstalldId"),
+//                        rs.getInt("kundId"));
+//                
+//                historyOfAccounts.add(handleAccount);
+//            }
+//        }
+//        catch(Exception e){
+//            e.printStackTrace();
+//        }
+//        handleAccount.setHistoryOfAccounts(historyOfAccounts);
+//        return historyOfAccounts;
+//    }
     
     
     public List<HandleLoan> getAllHandleLoans(){
@@ -569,6 +570,59 @@ public class Repository {
     
     
     
+    public List<HandleAccount> getAllHandleAccounts(){
+        HandleAccount handleAccount = new HandleAccount();
+        List<HandleAccount> historyOfAccounts = new ArrayList();
+        boolean avsluta;
+        boolean skapa;
+        
+        try(Connection con = DriverManager.getConnection(p.getProperty("connectionString"), 
+            p.getProperty("name"), p.getProperty("password"));
+            Statement stmt = con.createStatement();){
+            
+            ResultSet rs = stmt.executeQuery("select idhantering, kontoId, "
+                    + "sattainsaldo, tautsaldo, rantesats, skapa, avsluta, "
+                    + "anstalldId, kundId, date from hanteraKonto");
+            
+            while(rs.next()){
+                if (rs.getInt("avsluta") == 1){
+                    avsluta = true;
+                } else
+                    avsluta = false;
+
+                if (rs.getInt("skapa") == 1){
+                    skapa = true;
+                } else
+                    skapa = false;
+                
+                LocalDateTime localDateTime = fromStringToLocalDateTime(rs.getString("date"));
+                
+                handleAccount = new HandleAccount(rs.getInt("idhantering"), 
+                        rs.getInt("kontoId"), 
+                        rs.getInt("sattainsaldo"),
+                        rs.getInt("tautsaldo"),
+                        rs.getDouble("rantesats"),
+                        skapa,
+                        localDateTime,
+                        avsluta,
+                        rs.getInt("anstalldId"),
+                        rs.getInt("kundId"));
+                
+                historyOfAccounts.add(handleAccount);
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        handleAccount.setHistoryOfAccounts(historyOfAccounts);
+        return historyOfAccounts;
+    }
+    
+    
+    public LocalDateTime fromStringToLocalDateTime(String date){
+        String sdt = date.replace(" ", "T");
+        return LocalDateTime.parse(sdt);
+    }
     
     
 }

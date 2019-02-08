@@ -6,6 +6,7 @@ package banksystem.model;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -33,7 +34,7 @@ date datetime NOT NULL,
     private int withdrawalAmount;
     private double rate;
     private boolean created;
-    private Date creationDate;
+    private LocalDateTime creationDate;
     private boolean closedAccount;  // true = kontot avslutat
     private int employeeId;
     private int clientId;
@@ -41,7 +42,7 @@ date datetime NOT NULL,
     
     
     public HandleAccount(int id, int accountId, int depositAmount, int withdrawalAmount, 
-            double rate, boolean created, Date creationDate, boolean closedAccount,
+            double rate, boolean created, LocalDateTime creationDate, boolean closedAccount,
             int employeeId, int clientId){
         this.id = id;
         this.accountId = accountId;
@@ -90,11 +91,11 @@ date datetime NOT NULL,
         this.rate = rate;
     }
 
-    public Date getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 
