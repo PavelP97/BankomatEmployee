@@ -156,7 +156,7 @@ public class Controller {
 //   }
 //   
     public List<HandleAccount> loadHistorysforAccount(int aid, String stringStartDate, String stringEndDate){
-       
+       repo.getAllHandleAccounts();
        LocalDate startDate = LocalDate.parse(stringStartDate);
        LocalDate endDate = LocalDate.parse(stringEndDate);
        

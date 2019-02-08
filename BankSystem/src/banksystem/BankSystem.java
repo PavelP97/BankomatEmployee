@@ -63,10 +63,10 @@ public class BankSystem {
         Controller con = new Controller();
         Client client = new Client();
         Loan loan = new Loan();
-        HandleAccount handleAccount = new HandleAccount();        
+//        HandleAccount handleAccount = new HandleAccount();        
         
         
-        r.getAllAccounts();
+//        r.getAllAccounts();
 //        System.out.println("\nAccounts:");
 //        ac.printAccounts();
         
@@ -78,7 +78,7 @@ public class BankSystem {
 //        System.out.println("\nLoans:");
 //        loan.printLoans();
         
-        r.getAllHandleAccounts();
+//        r.getAllHandleAccounts();
 //        System.out.println("\nHandleAccounts:");
 //        handleAccount.printHandleAccount();
             
@@ -87,9 +87,9 @@ public class BankSystem {
 
 //        Account testAccount=con.loadAccountsforClient(new Client(1)).get(0);
 //        System.out.println(testAccount.AccountInfo());
-        List<HandleAccount> selectedDatesOfHandleAccount = new ArrayList();
+//        List<HandleAccount> selectedDatesOfHandleAccount = new ArrayList();
 //        selectedDatesOfHandleAccount = con.loadHistorysforAccount(testAccount, "2019-02-05", "2019-02-08");
-         selectedDatesOfHandleAccount = con.loadHistorysforAccount(3, "2019-02-05", "2019-02-08");
+        List<HandleAccount> selectedDatesOfHandleAccount = con.loadHistorysforAccount(3, "2019-02-05", "2019-02-08");
         System.out.println("Antal transaktioner: " + selectedDatesOfHandleAccount.size());
         for(HandleAccount hhh:selectedDatesOfHandleAccount){
             System.out.println(hhh.getId()+"  "+hhh.getAccountId()+"   "+hhh.Info());

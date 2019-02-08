@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 
 /*
  *  
@@ -39,6 +40,7 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
     String[] period;
     int selectedPeriod;
     List<HandleAccount> showhistory;
+    
     
     public EmployeeSystemGui() {
         initComponents();
@@ -112,6 +114,7 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
         jButton19 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jButton24 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
@@ -514,6 +517,13 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane5.setViewportView(jList1);
 
+        jButton24.setText("jButton24");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -544,6 +554,10 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
                         .addGap(201, 201, 201)))
                 .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jButton24)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -569,7 +583,9 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22))
                     .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(633, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton24)
+                .addContainerGap(598, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Watch History", jPanel1);
@@ -994,17 +1010,24 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+
         showhistory = con.loadHistorysforAccount(selectedAccount.getId(), jTextField11.getText(), jTextField12.getText());
         System.out.println(jTextField11.getText());
         System.out.println(jTextField12.getText());
         System.out.println(selectedAccount.getId());
-//        DefaultListModel dlm=new DefaultListModel();
-//        for(HandleAccount ha:showhistory){
-//           dlm.addElement(ha.Info());          
-//           
-//        }
-//        jList1.setModel(dlm);        // TODO add your handling code here:
+        System.out.println(showhistory.size());
+       
+        DefaultListModel dlm=new DefaultListModel();
+        for(HandleAccount ha:showhistory){
+           dlm.addElement(ha.Info());          
+           
+        }
+        jList1.setModel(dlm);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton24ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1058,6 +1081,7 @@ public class EmployeeSystemGui extends javax.swing.JFrame {
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
