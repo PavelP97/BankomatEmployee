@@ -27,7 +27,7 @@ public class BankSystem {
 //        System.out.println(con.loadAccountsforClient(new Client(1)).size());
 //        System.out.println(con.periodAccountHistory(sdf.parse("2019-02-01"), sdf.parse("2019-02-08")).size());
         
-//       Repository rep= new Repository();
+       Repository rep= new Repository();
 //        System.out.println(con.EmployeeLogin(2019002).getId())  ;
         
 //        rep.callCreateNewClient(4, 222345);
@@ -53,7 +53,7 @@ public class BankSystem {
 
 //            System.out.println(con.showVinstOfLoan(1));
 //            System.out.println(rep.callVinstOfLoan(2));
-//            System.out.println(rep.callPayOffMonth(1));
+            System.out.println(rep.callPayOffMonth(1));
 //              
 //            System.out.println("\ndatumPeriodEmployee-prog:");
 
@@ -89,12 +89,12 @@ public class BankSystem {
 //        System.out.println(testAccount.AccountInfo());
 //        List<HandleAccount> selectedDatesOfHandleAccount = new ArrayList();
 //        selectedDatesOfHandleAccount = con.loadHistorysforAccount(testAccount, "2019-02-05", "2019-02-08");
-        List<HandleAccount> selectedDatesOfHandleAccount = con.loadHistorysforAccount(3, "2019-02-05", "2019-02-08");
-        System.out.println("Antal transaktioner: " + selectedDatesOfHandleAccount.size());
-        for(HandleAccount hhh:selectedDatesOfHandleAccount){
-            System.out.println(hhh.getId()+"  "+hhh.getAccountId()+"   "+hhh.Info());
-        }
-//        
+//        List<HandleAccount> selectedDatesOfHandleAccount = con.loadHistorysforAccount(3, "2019-02-05", "2019-02-08");
+//        System.out.println("Antal transaktioner: " + selectedDatesOfHandleAccount.size());
+//        for(HandleAccount hhh:selectedDatesOfHandleAccount){
+//            System.out.println(hhh.getId()+"  "+hhh.getAccountId()+"   "+hhh.Info());
+//        }
+////        
     }
 
 }

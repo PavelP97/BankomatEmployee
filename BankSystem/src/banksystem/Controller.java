@@ -85,10 +85,11 @@ public class Controller {
        for(Client c:clients){
            if(personnumber.equals(String.valueOf(c.getPersonnumber()))){
                return c;
-           }
+           }        
            
-       }
-       return null;  
+       }      
+       
+       return new Client();  
    
    }
    
